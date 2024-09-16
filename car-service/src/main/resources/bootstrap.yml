@@ -1,6 +1,6 @@
 spring:
   application:
-    name: bike-service
+    name: car-service
 
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=carservice;encrypt=true;trustServerCertificate=true;
