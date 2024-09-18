@@ -60,7 +60,7 @@ public class UserController {
 
 
     @GetMapping("/bikes/{userId}")
-    public ResponseEntity<List<Bike>> getBikes(@PathVariable("UserId") int userId){
+    public ResponseEntity<List<Bike>> getBikes(@PathVariable("userId") int userId){
         User user = userService.getUserById(userId);
         if(user == null)
             return ResponseEntity.notFound().build();
