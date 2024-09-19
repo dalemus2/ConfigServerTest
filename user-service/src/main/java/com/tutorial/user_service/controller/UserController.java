@@ -68,7 +68,7 @@ public class UserController {
         return ResponseEntity.ok(carNew);
     }
 
-    @CircuitBreaker(name = "bikesCB", fallbackMethod="fallBackGetBikes")
+    @CircuitBreaker(name = "bikesCB", fallbackMethod = "fallBackGetBikes")
     @GetMapping("/bikes/{userId}")
     public ResponseEntity<List<Bike>> getBikes(@PathVariable("userId") int userId) {
         User user = userService.getUserById(userId);
@@ -94,32 +94,31 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-
     @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
-    private ResponseEntity<List<Car>> fallBackGetCars(@PathVariable("userId") int userId, RuntimeException e){
+    private ResponseEntity<List<Car>> fallBackGetCars(@PathVariable("userId") int userId, RuntimeException e) {
         return new ResponseEntity("El usuario " + userId + " tiene sus coches en el taller", HttpStatus.OK);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
-    private ResponseEntity<Car> fallBackSaveCar (@PathVariable("userId") int userId, @RequestBody Car car, RuntimeException e) {
-    return new ResponseEntity("El usuario " + userId + " tiene sus coches en el taller", HttpStatus.OK);
+    private ResponseEntity<Car> fallBackSaveCar(@PathVariable("userId") int userId, @RequestBody Car car,
+            RuntimeException e) {
+        return new ResponseEntity("El usuario " + userId + " No es posible guardar contacte al administrador.", HttpStatus.OK);
     }
-    
+
     @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
-    private ResponseEntity<List<Bike>> fallBackGetBikes(@PathVariable("userId") int userId, RuntimeException e){
+    private ResponseEntity<List<Bike>> fallBackGetBikes(@PathVariable("userId") int userId, RuntimeException e) {
         return new ResponseEntity("El usuario " + userId + " tiene sus motos en el taller", HttpStatus.OK);
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
-    private ResponseEntity<Bike> fallBackSaveBike (@PathVariable("userId") int userId, @RequestBody Bike bike, RuntimeException e) {
-    return new ResponseEntity("El usuario " + userId + " tiene sus motos en el taller", HttpStatus.OK);
+    private ResponseEntity<Bike> fallBackSaveBike(@PathVariable("userId") int userId, @RequestBody Bike bike,
+            RuntimeException e) {
+        return new ResponseEntity("El usuario " + userId + " No es posible guardar contacte al administrador.", HttpStatus.OK);
     }
-    
 
     @SuppressWarnings({ "rawtypes", "unchecked", "unused" })
     private ResponseEntity<Map<String, Object>> fallBackGetAll(@PathVariable("userId") int userId, RuntimeException e) {
-        return new ResponseEntity("El usuario " + userId + " tiene sus motos y vehiculos en el taller", HttpStatus.OK);    }
-
-    
+        return new ResponseEntity("El usuario " + userId + " tiene sus motos y vehiculos en el taller", HttpStatus.OK);
+    }
 
 }
